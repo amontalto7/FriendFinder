@@ -1,10 +1,22 @@
-// Basic route that sends the user first to the AJAX Page
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "..\\public\\home.html"));
-  });
-  
-//   View reservations
-  app.get("/tables", function(req, res) {
-    res.sendFile(path.join(__dirname, "view.html"));
-  });
-  
+const express = require("express");
+const htmlRoutes = express.Router();
+const path = require("path");
+
+// route to main page
+htmlRoutes.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/home.html"));
+});
+
+// route to survey
+htmlRoutes.get("/survey", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/survey.html"));
+});
+
+// catch all
+  htmlRoutes.use(function(req, res){
+    // res.sendStatus(404);
+    res.sendFile(path.join(__dirname, "../public/home.html"));
+});
+
+
+module.exports = htmlRoutes;
