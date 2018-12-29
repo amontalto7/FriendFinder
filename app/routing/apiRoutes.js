@@ -1,34 +1,34 @@
-// module.exports = (function() {
-//     'use strict';
+const express = require("express");
+const apiRoutes = express.Router();
+const path = require("path");
 
-//     let apiRoutes = require('express').Router();
+var friendsArr = [
+    {
+      customerName: "Anthony",
+      phoneNumber: "555-777-8888",
+      customerEmail: "email@email.com",
+      customerID: "test2"
+    }
+  ];
 
-//     // apiRoutes.use(express.urlencoded({ extended: true })); // allows you to process complex objects from the client side
-//     // apiRoutes.use(express.json());
-    
-
-//     apiRoutes.get("/", function(req, res) {
-//     res.sendFile(path.join(__dirname, "app/public/home.html"));
-//   });
-  
-
-//     apiRoutes.get("/api/friends", function(req, res) {
-//         // res.json(reservationArr);
-//         res.send('Hello ExternalRoutes!');
-//     });
-
-//     return apiRoutes;
-// })();
-
-const express = require('express');
-const router = express.Router();
-const path = require('path');
-
-
-    router.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/home.html"));
-    // res.send('Hello World!');
+apiRoutes.get("/friends", function(req, res) {
+  res.json(friendsArr);
 });
 
-  
-module.exports = router;
+apiRoutes.post("/friends", function(req, res) {
+    let newFriend = req.body;
+    console.log(newFriend);
+
+    // if (reservationArr.length < 5) {
+        friendsArr.push(newFriend);
+        console.log("adding friend")
+    // }
+    // else {
+        // waiting.push(newReservation);
+        // console.log("adding waitlist")
+    // }
+// return, for user validation
+  });
+
+
+module.exports = apiRoutes;
