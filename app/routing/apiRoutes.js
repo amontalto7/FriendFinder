@@ -16,6 +16,8 @@ apiRoutes.post("/friends", function(req, res) {
   userData.push(newFriend);
   console.log("adding friend");
 
+    return userData[1];
+
   // return, for user validation
 });
 
