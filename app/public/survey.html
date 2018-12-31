@@ -29,7 +29,9 @@
 <body>
 
   <div class="container">
-
+    <p> 
+        <a href="/">Home</a><br>
+    </p>
     <h2>Survey Questions</h2>
     <hr>
 
@@ -164,13 +166,7 @@
     <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
      Submit</button>
 
-     <!-- Button trigger modal -->
-    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#results-modal">
-        Launch demo modal
-      </button>
-
-
-    <hr>
+     <hr>
     <footer class="footer">
         <div class="container">
             <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/amontalto7/FriendFinder" alt="Github Repo">Gitub Repo</a>
@@ -279,7 +275,7 @@
           $("#match-name").text(data.name);
           $("#match-img").attr("src", data.photo);
             console.log("logging data");
-          console.log(data);
+            console.log(data);
           // Show the modal with the best match
           $("#results-modal").modal('toggle');
 
