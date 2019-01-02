@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true })); // allows you to process complex objects from the client side
 app.use(express.json());
 
-app.use(express.static('./app/public/assets/images/'));
+app.use(express.static(path.join(__dirname, "/app/public/assets/images/")));  
 
 // Routes
 // =============================================================
