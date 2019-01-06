@@ -30,7 +30,7 @@ let userData = [
         scores: ["2", "3", "4", "3", "2", "1", "3", "4", "", "2"]
     },
     {
-        name: "Cersei Cannister",
+        name: "Cersei Lannister",
         photo:
           "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/Cersei_Lannister-Lena_Headey.jpg/220px-Cersei_Lannister-Lena_Headey.jpg",
         scores: ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1"]
