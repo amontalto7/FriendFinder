@@ -16,7 +16,7 @@ htmlRoutes.get("/survey", function(req, res) {
 
 // catch all
   htmlRoutes.use(function(req, res){
-    // res.sendStatus(404);
+    res.sendStatus(404);
     res.sendFile(path.join(__dirname, "../public/home.html"));
 });
 
