@@ -7,41 +7,238 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Friend Finder – Westeros Edition</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"/>
-
-    <title>Home</title>
+    <!-- Fonts & Styles -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almendra+SC&family=MedievalSharp&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      crossorigin="anonymous"
+    />
 
     <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "MedievalSharp", cursive;
+        overflow-x: hidden;
+        background-color: #000;
+        color: white;
+      }
+
       .jumbotron {
-        background-image: url("./assets/images/couple.png");
+        background-image: url("./assets/images/friendfinder.png");
         background-size: cover;
-        background-color: floralwhite;
+        background-position: center;
+        height: 100vh;
+        color: white;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .overlay-text {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 2rem;
+        border-radius: 1rem;
+      }
+
+      .btn-westeros {
+        background-color: #800000;
+        border-color: #800000;
+        font-size: 1.2rem;
+      }
+
+      .btn-westeros:hover {
+        background-color: #a52a2a;
+        border-color: #a52a2a;
+      }
+
+      footer {
+        padding: 1rem;
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      /* Toggle */
+      .toggle-container {
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        z-index: 9999;
+        font-size: 0.9rem;
+      }
+
+      .snowflake {
+        color: white;
+        font-size: 1.5em;
+        position: fixed;
+        top: -10px;
+        z-index: 9998;
+        user-select: none;
+        pointer-events: none;
+        animation: fall linear infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(100vh);
+        }
+      }
+
+      canvas#fireCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9997;
+        pointer-events: none;
       }
     </style>
   </head>
+
   <body>
-    <div class="jumbotron">
-      <h1 class="display-4">
-        <i class="fas fa-grin-hearts" aria-hidden="true"></i> Friend Finder
-      </h1>
-      <h2 class="display-5">Westeros Edition!</h2>
-      <hr class="my-4" />
-      <p class="lead">Answer a few basic questions.</p>
-      <p class="lead">Then find the friend with the greatest compatibility!</p>
-      <a class="btn btn-primary btn-lg" href="survey" role="button"><span class="fas fa-poll-h"></span> Go to Survey</a>
+    <!-- Effect Toggle -->
+    <div class="toggle-container text-white">
+      <label for="effectToggle">❄️ Winter is Here / 🔥 Fire Reigns</label>
+      <input type="checkbox" id="effectToggle" />
     </div>
-    <hr>
-    <footer class="footer">
-        <div class="container">
-            <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/amontalto7/FriendFinder" alt="Github Repo">Gitub Repo</a>
-        </div>
+
+    <!-- Fire Canvas -->
+    <canvas id="fireCanvas"></canvas>
+
+    <!-- Snowflakes (added dynamically) -->
+
+    <div class="jumbotron">
+      <div class="overlay-text">
+        <h1 class="display-4">
+          <i class="fas fa-grin-hearts"></i> Friend Finder
+        </h1>
+        <h2>Westeros Edition!</h2>
+        <p class="lead">Answer a few basic questions.</p>
+        <p class="lead">
+          Then find the friend with the greatest compatibility!
+        </p>
+        <a
+          class="btn btn-westeros btn-lg text-white"
+          href="survey"
+          role="button"
+          ><i class="fas fa-poll-h"></i> Go to Survey</a
+        >
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        <a href="/api/friends">API Friends List</a> |
+        <a href="https://github.com/amontalto7/FriendFinder">GitHub Repo</a>
+      </p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Scripts -->
+    <script>
+      const fireCanvas = document.getElementById("fireCanvas");
+      const ctx = fireCanvas.getContext("2d");
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      fireCanvas.width = width;
+      fireCanvas.height = height;
+
+      let particles = [];
+
+      class Ember {
+        constructor() {
+          this.x = Math.random() * width;
+          this.y = height;
+          this.radius = Math.random() * 2 + 1;
+          this.speedY = Math.random() * 1 + 0.5;
+          this.opacity = Math.random() * 0.5 + 0.5;
+        }
+        update() {
+          this.y -= this.speedY;
+          if (this.y < 0) {
+            this.y = height;
+            this.x = Math.random() * width;
+          }
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, ${Math.floor(Math.random() * 100)}, 0, ${
+            this.opacity
+          })`;
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < 100; i++) {
+        particles.push(new Ember());
+      }
+
+      function animateFire() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animateFire);
+      }
+
+      animateFire();
+      fireCanvas.style.display = "none"; // Hide fire by default
+
+      // Snow generation
+      function createSnowflake() {
+        const snowflake = document.createElement("div");
+        snowflake.classList.add("snowflake");
+        snowflake.style.left = Math.random() * window.innerWidth + "px";
+        snowflake.style.animationDuration = Math.random() * 3 + 2 + "s";
+        snowflake.innerText = "❄️";
+        document.body.appendChild(snowflake);
+
+        setTimeout(() => {
+          snowflake.remove();
+        }, 5000);
+      }
+
+      let snowInterval = setInterval(createSnowflake, 200);
+
+      // Toggle Switch Logic
+      const toggle = document.getElementById("effectToggle");
+      toggle.addEventListener("change", function () {
+        if (this.checked) {
+          // Fire mode on
+          fireCanvas.style.display = "block";
+          snowInterval && clearInterval(snowInterval);
+          document.querySelectorAll(".snowflake").forEach((el) => el.remove());
+        } else {
+          // Snow mode on
+          fireCanvas.style.display = "none";
+          snowInterval = setInterval(createSnowflake, 200);
+        }
+      });
+
+      // Update canvas on resize
+      window.addEventListener("resize", () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        fireCanvas.width = width;
+        fireCanvas.height = height;
+      });
+    </script>
   </body>
 </html>
