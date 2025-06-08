@@ -38,7 +38,7 @@ Built using **Node.js**, **Express**, **Bootstrap**, and **jQuery**, it pairs us
 ![Survey Screenshot](assets/images/screenshot1.png)
 
 ### 💘 Match Modal
-![Match Result](assets/images/screenshot2.png)
+![Match Result](assets/images/screenshot3.png)
 ---
 
 ## 🚀 Getting Started
